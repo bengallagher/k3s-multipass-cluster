@@ -6,7 +6,7 @@ function create_server() {
     multipass launch --verbose \
         --name "${instance}" \
         --cpus 1 --memory 1G --disk 5G \
-        --cloud-init "./cloud-init/server.yaml"
+        --cloud-init "./server.yaml"
 }
 
 function create_node() {
@@ -15,7 +15,7 @@ function create_node() {
     multipass launch --verbose \
         --name "${instance}" \
         --cpus 1 --memory 1G --disk 10G \
-        --cloud-init "./cloud-init/node.yaml"
+        --cloud-init "./node.yaml"
 }
 
 function export_k3s_token() {

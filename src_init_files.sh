@@ -1,7 +1,7 @@
 #! /bin/bash
 
 function create_node_init_file() {
-    local init_file="./cloud-init/node.yaml"
+    local init_file="./node.yaml"
 
     cat > ${init_file} <<EOL
 users:
@@ -18,7 +18,7 @@ EOL
 }
 
 function create_server_init_file() {
-    local init_file="./cloud-init/server.yaml"
+    local init_file="./server.yaml"
 
     cat > ${init_file} <<EOL
 users:
@@ -30,6 +30,6 @@ users:
 runcmd:
   - sudo apt update
   - sudo apt upgrade -y
-  - curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="server --disable traefik" sh -
+  - curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="server --disable traefik, servicelb" sh -
 EOL
 }
