@@ -1,23 +1,5 @@
 #! /bin/bash
 
-function create_server() {
-    local instance="$1"
-
-    multipass launch --verbose \
-        --name "${instance}" \
-        --cpus 1 --memory 1G --disk 5G \
-        --cloud-init "./server.yaml"
-}
-
-function create_node() {
-    local instance="$1"
-
-    multipass launch --verbose \
-        --name "${instance}" \
-        --cpus 1 --memory 1G --disk 10G \
-        --cloud-init "./node.yaml"
-}
-
 function export_k3s_token() {
     local instance="$1"
 
@@ -27,6 +9,8 @@ function export_k3s_token() {
 
     # Export value for re-use.
     export K3S_TOKEN="${token}"
+
+    echo "# Exporting K3S Token [${token}]"
 }
 
 function export_k3s_url() {
@@ -41,6 +25,8 @@ function export_k3s_url() {
     # Export values for re-use.
     export K3S_IP="${ip}"
     export K3S_URL="${url}"
+
+    echo "# Exporting K3S Server IP + URL [${url}]"
 }
 
 function export_kube_config() {

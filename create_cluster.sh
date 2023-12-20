@@ -1,8 +1,14 @@
 #!/bin/sh
 
+# Define specific K3S version - comment out to install latest.
+# https://github.com/k3s-io/k3s/releases
+export K3S_VERSION="v1.23.8+k3s2"
+
 # Load re-usable functions.
-source ./src_functions.sh
-source ./src_init_files.sh
+for settings in $(find ./src -type f -maxdepth 1 | sort)
+do
+    source ${settings}
+done
 
 # Set manual variables
 server_name="k3s-server"
